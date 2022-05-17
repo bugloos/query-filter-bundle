@@ -13,6 +13,9 @@ services:
 
     Bugloos\QueryFilterBundle\Tests\Fixtures\Controller\BookController:
         public: true
+        calls:
+            - method: setContainer
+              arguments: [ '@service_container' ]
         arguments:
             $entityManager: '@doctrine.orm.default_entity_manager'
             $queryFilter: '@bugloos_query_filter.query_filter'
