@@ -1,0 +1,24 @@
+framework:
+    test: true
+    secret: test
+    router:
+        resource: "%kernel.project_dir%/tests/Fixtures/Config/routing.yaml"
+        utf8: true
+    fragments:
+        enabled: true
+
+doctrine:
+    dbal:
+        driver: 'pdo_sqlite'
+        path: '%kernel.project_dir%/tests/Fixtures/db/test.db'
+    orm:
+        auto_generate_proxy_classes: true
+        naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
+        auto_mapping: true
+        mappings:
+            QueryFilterBundle:
+                is_bundle: true
+                type: annotation
+                dir: '/../tests/Fixtures/Entity'
+                prefix: 'Bugloos\QueryFilterBundle\Tests\Fixtures\Entity'
+                alias: QueryFilterBundle
