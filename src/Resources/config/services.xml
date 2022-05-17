@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+        http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="bugloos_query_filter.query_filter" class="Bugloos\QueryFilterBundle\Service\QueryFilter" public="true">
+            <argument type="service" id="doctrine.orm.default_entity_manager" /> <!-- filled in via a compiler pass -->
+            <argument type="service" id="cache.app" /> <!-- filled in via a compiler pass -->
+            <argument type="service" id="bugloos_query_filter.filter_handler_factory.filter_factory" /> <!-- filled in via a compiler pass -->
+        </service>
+
+        <service id="bugloos_query_filter.filter_handler_factory.filter_factory" class="Bugloos\QueryFilterBundle\FilterHandler\Factory\FilterFactory">
+            <argument type="service" id="doctrine.orm.default_entity_manager" />
+        </service>
+
+        <service id="Bugloos\QueryFilterBundle\Service\QueryFilter" alias="bugloos_query_filter.query_filter" public="false" />
+    </services>
+</container>

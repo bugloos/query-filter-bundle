@@ -1,0 +1,19 @@
+services:
+
+    request:
+        synthetic: true
+
+    app.synthetic_service:
+        synthetic: true
+
+    Bugloos\QueryFilterBundle\Tests\Fixtures\Repository\:
+        resource: '../../../tests/Fixtures/Repository'
+        autowire: true
+        tags: [ 'doctrine.repository_service' ]
+
+    Bugloos\QueryFilterBundle\Tests\Fixtures\Controller\BookController:
+        public: true
+        arguments:
+            $entityManager: '@doctrine.orm.default_entity_manager'
+            $queryFilter: '@bugloos_query_filter.query_filter'
+        tags: [ 'controller.service_arguments' ]

@@ -1,0 +1,36 @@
+DROP TABLE IF EXISTS country;
+CREATE TABLE country (
+    id INTEGER PRIMARY KEY NULL,
+    name VARCHAR(100) NULL,
+    status SMALLINT NULL
+);
+
+DROP TABLE IF EXISTS book;
+CREATE TABLE book (
+    id INTEGER PRIMARY KEY NULL,
+    country_id INT (11) NULL,
+    title VARCHAR(100) NULL,
+    date DATE NULL,
+    description VARCHAR(255) NULL,
+    price DECIMAL(10,4) NULL,
+    status SMALLINT NULL,
+    CONSTRAINT FK_BOOK_TO_COUNTRY FOREIGN KEY (country_id) REFERENCES country (id)
+);
+
+DROP TABLE IF EXISTS user;
+CREATE TABLE user (
+     id INTEGER PRIMARY KEY NULL,
+     name VARCHAR(100) NULL,
+     surname VARCHAR(100) NULL,
+     age INTEGER NULL,
+     status SMALLINT NULL
+);
+
+DROP TABLE IF EXISTS book_user;
+CREATE TABLE book_user (
+    id INTEGER PRIMARY KEY NULL,
+    book_id int(11) NOT NULL,
+    user_id int(11) NOT NULL,
+    CONSTRAINT FK_USER_TO_BOOK FOREIGN KEY (book_id) REFERENCES book (id),
+    CONSTRAINT FK_BOOK_TO_USER FOREIGN KEY (user_id) REFERENCES user (id)
+);

@@ -1,0 +1,44 @@
+{
+    "name": "bugloos/query-filter-bundle",
+    "description": "The query filter bundle allows you to filter data from QueryBuilder and the Database. you can filter multiple columns at the same time and also you can filter relation fields with two-level deep and without any join in your query builder.",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "authors": [
+        {
+            "name": "Milad Ghofrani",
+            "email": "milad.ghofrani@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "doctrine/doctrine-bundle": "^2.2",
+        "doctrine/orm": "^2.8",
+        "symfony/http-kernel": "^4.4",
+        "psr/cache": "^1.0",
+        "symfony/orm-pack": "^2.1",
+        "symfony/framework-bundle": "^4.4",
+        "nesbot/carbon": "^2.55"
+    },
+    "require-dev": {
+        "ext-json": "*",
+        "roave/security-advisories": "dev-latest",
+        "phpunit/phpunit": "^9.5",
+        "symfony/browser-kit": "^5.4",
+        "zenstruck/foundry": "^1.16",
+        "symfony/http-client": "^5.4",
+        "friendsofphp/php-cs-fixer": "^2.18",
+        "matthiasnoback/symfony-dependency-injection-test": "^4.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bugloos\\QueryFilterBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Bugloos\\QueryFilterBundle\\Tests\\": "tests/"
+        }
+    }
+}
