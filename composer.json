@@ -12,13 +12,13 @@
         }
     ],
     "require": {
-        "php": "^8.1",
+        "php": ">=7.4",
         "doctrine/doctrine-bundle": "^2.2",
         "doctrine/orm": "^2.8",
-        "symfony/http-kernel": "^5.4",
+        "symfony/http-kernel": "^4.4 | ^5.4",
         "psr/cache": "^1.0",
         "symfony/orm-pack": "^2.2",
-        "symfony/framework-bundle": "^5.4"
+        "symfony/framework-bundle": "^4.4 | ^5.4"
     },
     "require-dev": {
         "ext-json": "*",

@@ -13,8 +13,8 @@ composer require bugloos/query-filter-bundle
 
 <h2>Compatibility</h2>
 
-* PHP v8.1 or above
-* Symfony v5.4 or above
+* PHP v7.4 or above
+* Symfony v4.4 or above
 
 <h2>Usage</h2>
 Suppose our database has the following tables with the following relations
