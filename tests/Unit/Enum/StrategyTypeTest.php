@@ -66,10 +66,26 @@ class StrategyTypeTest extends TestCase
         self::assertSame($oldValue, $changedValue);
     }
 
+    public function test_after_exact_strategy_value(): void
+    {
+        $oldValue = 'test';
+        $changedValue = StrategyType::strategyValue(StrategyType::AFTER_EXACT, $oldValue);
+
+        self::assertSame($oldValue, $changedValue);
+    }
+
     public function test_before_strategy_value(): void
     {
         $oldValue = 'test';
         $changedValue = StrategyType::strategyValue(StrategyType::BEFORE, $oldValue);
+
+        self::assertSame($oldValue, $changedValue);
+    }
+
+    public function test_before_exact_strategy_value(): void
+    {
+        $oldValue = 'test';
+        $changedValue = StrategyType::strategyValue(StrategyType::BEFORE_EXACT, $oldValue);
 
         self::assertSame($oldValue, $changedValue);
     }

@@ -20,7 +20,9 @@ class EnumTest extends TestCase
             'word_start',
             'array',
             'after',
+            'after_exact',
             'before',
+            'before_exact',
             'is_null',
             'is_not_null',
         ];
@@ -40,7 +42,9 @@ class EnumTest extends TestCase
             'WORD_START',
             'ARRAY',
             'AFTER',
+            'AFTER_EXACT',
             'BEFORE',
+            'BEFORE_EXACT',
             'IS_NULL',
             'IS_NOT_NULL',
         ];

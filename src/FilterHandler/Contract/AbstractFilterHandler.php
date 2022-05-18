@@ -87,7 +87,8 @@ abstract class AbstractFilterHandler
 
     protected function createParameterName($alias, $column): string
     {
-        return sprintf('%s_%s', $alias, $column);
+        $random = mt_rand(1111,9999);
+        return sprintf('%s_%s_%s', $alias, $column, $random);
     }
 
     /**
