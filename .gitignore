@@ -7,3 +7,4 @@ composer.lock
 /.idea/
 phpunit.xml.dist.bak
 .phpunit.result.cache
+.php-cs-fixer.cache

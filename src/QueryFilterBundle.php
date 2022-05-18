@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Bugloos\QueryFilterBundle;
 
 use Bugloos\QueryFilterBundle\DependencyInjection\QueryFilterExtension;
+use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
@@ -12,7 +13,12 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  */
 class QueryFilterBundle extends Bundle
 {
-    public function getContainerExtension()
+    /**
+     * @return ExtensionInterface|QueryFilterExtension
+     *
+     * @author Milad Ghofrani <milad.g@bugloos.com>
+     */
+    public function getContainerExtension(): QueryFilterExtension|ExtensionInterface
     {
         if (null === $this->extension) {
             $this->extension = new QueryFilterExtension();
