@@ -284,6 +284,36 @@ class BookControllerTest extends WebTestCase
     /**
      * @throws Exception
      */
+    public function test_it_can_filter_date_fields_and_get_all_item_from_and_to_value(): void
+    {
+        BookUserCollectionStory::load();
+        $firstBookDate = repository(Book::class)->first()->getDate();
+
+        static::ensureKernelShutdown();
+
+        $client = static::createClient();
+
+        $queryParams = [
+            'filters' => [
+                'dateFrom' => $firstBookDate->format('Y-m-d'),
+                'dateTo' => $firstBookDate->format('Y-m-d'),
+            ],
+            'no_cache' => random_int(0, 999999),
+        ];
+        $client->request('GET', '/api/filter/books', $queryParams);
+        $bookCollection = json_decode($client->getResponse()->getContent(), true, 512, \JSON_THROW_ON_ERROR);
+
+        self::assertSame(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+        self::assertNotEmpty($bookCollection);
+
+        foreach ($bookCollection as $book) {
+            self::assertGreaterThanOrEqual($book['date'], new \DateTime());
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
     public function test_it_can_filter_multiple_fields_and_one_field_value_is_empty(): void
     {
         BookUserCollectionStory::load();
