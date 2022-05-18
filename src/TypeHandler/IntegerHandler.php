@@ -20,7 +20,9 @@ class IntegerHandler extends AbstractTypeHandler
         return [
             StrategyType::EXACT,
             StrategyType::AFTER,
+            StrategyType::AFTER_EXACT,
             StrategyType::BEFORE,
+            StrategyType::BEFORE_EXACT,
         ];
     }
 

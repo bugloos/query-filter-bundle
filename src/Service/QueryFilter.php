@@ -83,9 +83,11 @@ class QueryFilter
     /**
      * @param mixed $filters
      *
+     * @return self
+     *
      * @throws JsonException
      */
-    public function parameters($filters): self
+    public function parameters(mixed $filters): self
     {
         if (empty($filters)) {
             return $this;
@@ -169,7 +171,7 @@ class QueryFilter
      *
      * @throws JsonException
      */
-    private function createCacheKey($array): void
+    private function createCacheKey(mixed $array): void
     {
         $this->cacheKey = md5($this->rootEntity.json_encode($array, \JSON_THROW_ON_ERROR));
     }
