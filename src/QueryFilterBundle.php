@@ -18,7 +18,7 @@ class QueryFilterBundle extends Bundle
      *
      * @author Milad Ghofrani <milad.g@bugloos.com>
      */
-    public function getContainerExtension(): QueryFilterExtension|ExtensionInterface
+    public function getContainerExtension()
     {
         if (null === $this->extension) {
             $this->extension = new QueryFilterExtension();
