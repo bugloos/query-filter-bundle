@@ -33,13 +33,20 @@ class FilterFactory
      */
     public function createFilterHandler(array $relationsAndFieldName): AbstractFilterHandler
     {
-        return match (\count($relationsAndFieldName)) {
-            self::NO_RELATION => new NoRelationHandler($this->entityManager),
-            self::ONE_LEVEL_RELATION => new OneLevelRelationHandler($this->entityManager),
-            self::TWO_LEVEL_RELATION => new TwoLevelRelationHandler($this->entityManager),
-            default => throw new \RuntimeException(
-                'This Bundle just support maximum two-level deep relation'
-            ),
-        };
+        switch (\count($relationsAndFieldName)) {
+            case self::NO_RELATION:
+                return new NoRelationHandler($this->entityManager);
+
+            case self::ONE_LEVEL_RELATION:
+                return new OneLevelRelationHandler($this->entityManager);
+
+            case self::TWO_LEVEL_RELATION:
+                return new TwoLevelRelationHandler($this->entityManager);
+
+            default:
+                throw new \RuntimeException(
+                    'This Bundle just support maximum two-level deep relation'
+                );
+        }
     }
 }
