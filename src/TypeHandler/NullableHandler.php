@@ -17,17 +17,26 @@ class NullableHandler extends AbstractTypeHandler
         $strategy = $this->strategy($strategy);
         $this->validateStrategy($strategy);
 
+        $strategyValue = StrategyType::strategySign($strategy);
+
+        if($strategy === StrategyType::EXACT){
+            $strategyValue = $value === 1
+                ? StrategyType::strategySign(StrategyType::IS_NOT_NULL)
+                : StrategyType::strategySign(StrategyType::IS_NULL);
+        }
+
         return sprintf(
             '%s.%s %s',
             $alias,
             $field,
-            StrategyType::strategySign($strategy)
+            $strategyValue
         );
     }
 
     public function allowStrategies(): array
     {
         return [
+            StrategyType::EXACT,
             StrategyType::IS_NULL,
             StrategyType::IS_NOT_NULL,
         ];
