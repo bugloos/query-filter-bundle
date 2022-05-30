@@ -1,6 +1,8 @@
 <h2>Query Filter Bundle</h2>
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/bugloos/query-filter-bundle/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/bugloos/query-filter-bundle/?branch=main)
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/bugloos/query-filter-bundle/test)](https://github.com/bugloos/query-filter-bundle/actions)
+[![Code Intelligence Status](https://scrutinizer-ci.com/g/bugloos/query-filter-bundle/badges/code-intelligence.svg?b=main)](https://scrutinizer-ci.com/code-intelligence)
 
 <h2>What does it do? :)</h2>
 The query filter bundle allows you to filter data from QueryBuilder and the Database. you can filter multiple columns at the same time and also you can filter relation fields with two-level deep and without any join in your query builder.
