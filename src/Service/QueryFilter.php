@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Bugloos\QueryFilterBundle\Service;
 
+use Bugloos\QueryFilterBundle\Enum\ColumnType;
 use Closure;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\ClassMetadata;
@@ -210,13 +211,16 @@ class QueryFilter
                     $type
                 );
 
-                $filterParameters[$filterParameter] = $filteringHandler->filterValue($value, $strategy);
+                if($type !== ColumnType::NULLABLE){
+                    $filterParameters[$filterParameter] = $filteringHandler->filterValue($value, $strategy);
+                }
 
                 $filterWhereClauses[] = $filteringHandler->filterWhereClause(
                     $this->rootAlias,
                     $relationsAndFieldName,
                     $filterParameter,
-                    $strategy
+                    $strategy,
+                    $value
                 );
 
                 if ($filteringHandler instanceof WithRelationInterface) {

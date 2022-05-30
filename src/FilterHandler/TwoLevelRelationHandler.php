@@ -38,12 +38,13 @@ class TwoLevelRelationHandler extends AbstractFilterHandler implements WithRelat
         $rootAlias,
         $relationsAndFieldName,
         $filterParameter,
-        $strategy
+        $strategy,
+        $value
     ): string {
         [$relationAlias, $subRelationAlias, $subRelationField] = $relationsAndFieldName;
 
         return TypeFactory::createTypeHandler($this->fieldType)
-            ->filterWhereClause($subRelationAlias, $subRelationField, $filterParameter, $strategy)
+            ->filterWhereClause($subRelationAlias, $subRelationField, $filterParameter, $strategy, $value)
         ;
     }
 

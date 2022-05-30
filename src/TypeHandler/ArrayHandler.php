@@ -12,7 +12,7 @@ use Bugloos\QueryFilterBundle\TypeHandler\Contract\AbstractTypeHandler;
  */
 class ArrayHandler extends AbstractTypeHandler
 {
-    public function filterWhereClause($alias, $field, $filterParameter, $strategy): string
+    public function filterWhereClause($alias, $field, $filterParameter, $strategy, $value): string
     {
         return sprintf(
             '%s.%s %s (:%s)',

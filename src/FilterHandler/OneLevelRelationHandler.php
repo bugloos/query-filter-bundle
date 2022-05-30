@@ -35,12 +35,13 @@ class OneLevelRelationHandler extends AbstractFilterHandler implements WithRelat
         $rootAlias,
         $relationsAndFieldName,
         $filterParameter,
-        $strategy
+        $strategy,
+        $value
     ): string {
         [$relationAlias, $relationField] = $relationsAndFieldName;
 
         return TypeFactory::createTypeHandler($this->fieldType)
-            ->filterWhereClause($relationAlias, $relationField, $filterParameter, $strategy)
+            ->filterWhereClause($relationAlias, $relationField, $filterParameter, $strategy, $value)
         ;
     }
 

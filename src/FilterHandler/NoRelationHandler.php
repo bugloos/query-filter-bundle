@@ -32,13 +32,14 @@ class NoRelationHandler extends AbstractFilterHandler
         $rootAlias,
         $relationsAndFieldName,
         $filterParameter,
-        $strategy
+        $strategy,
+        $value
     ): string {
         $alias = $rootAlias;
         $field = $relationsAndFieldName[0];
 
         return TypeFactory::createTypeHandler($this->fieldType)
-            ->filterWhereClause($alias, $field, $filterParameter, $strategy)
+            ->filterWhereClause($alias, $field, $filterParameter, $strategy, $value)
         ;
     }
 }

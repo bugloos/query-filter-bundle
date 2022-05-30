@@ -11,7 +11,7 @@ use Bugloos\QueryFilterBundle\Enum\StrategyType;
  */
 abstract class AbstractTypeHandler
 {
-    abstract public function filterWhereClause($alias, $field, $filterParameter, $strategy): string;
+    abstract public function filterWhereClause($alias, $field, $filterParameter, $strategy, $value): string;
 
     abstract protected function allowStrategies(): array;
 
