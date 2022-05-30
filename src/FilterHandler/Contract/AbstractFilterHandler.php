@@ -38,7 +38,8 @@ abstract class AbstractFilterHandler
         $rootAlias,
         $relationsAndFieldName,
         $filterParameter,
-        $strategy
+        $strategy,
+        $value
     ): string;
 
     public function filterValue($value, $strategy)

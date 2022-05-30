@@ -11,7 +11,7 @@ use Bugloos\QueryFilterBundle\Enum\StrategyType;
  */
 trait TypeTrait
 {
-    public function filterWhereClause($alias, $field, $filterParameter, $strategy): string
+    public function filterWhereClause($alias, $field, $filterParameter, $strategy, $value): string
     {
         $strategy = $this->strategy($strategy);
         $this->validateStrategy($strategy);

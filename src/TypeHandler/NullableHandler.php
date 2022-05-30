@@ -12,7 +12,7 @@ use Bugloos\QueryFilterBundle\TypeHandler\Contract\AbstractTypeHandler;
  */
 class NullableHandler extends AbstractTypeHandler
 {
-    public function filterWhereClause($alias, $field, $filterParameter, $strategy): string
+    public function filterWhereClause($alias, $field, $filterParameter, $strategy, $value): string
     {
         $strategy = $this->strategy($strategy);
         $this->validateStrategy($strategy);
@@ -28,8 +28,8 @@ class NullableHandler extends AbstractTypeHandler
     public function allowStrategies(): array
     {
         return [
-            StrategyType::IS_NULL => 'IS NULL',
-            StrategyType::IS_NOT_NULL => 'IS NOT NULL',
+            StrategyType::IS_NULL,
+            StrategyType::IS_NOT_NULL,
         ];
     }
 
