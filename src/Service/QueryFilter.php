@@ -52,6 +52,8 @@ class QueryFilter
 
     private array $types = [];
 
+    private array $constants = [];
+
     private ?int $cacheTime = null;
 
     private bool $withOr = false;
@@ -197,10 +199,10 @@ class QueryFilter
                 $type = $this->types[$parameter] ?? null;
 
                 // Check $parameter exists in mapper
-                $parameter = (\array_key_exists($parameter, $this->mapper))
+                $checkedParameter = (\array_key_exists($parameter, $this->mapper))
                     ? $this->mapper[$parameter] : $parameter;
 
-                $relationsAndFieldName = explode($this->separator, $parameter);
+                $relationsAndFieldName = explode($this->separator, $checkedParameter);
 
                 $filteringHandler = $this->filterFactory->createFilterHandler($relationsAndFieldName);
 
@@ -215,13 +217,21 @@ class QueryFilter
                     $filterParameters[$filterParameter] = $filteringHandler->filterValue($value, $strategy);
                 }
 
-                $filterWhereClauses[] = $filteringHandler->filterWhereClause(
+                $whereClause = $filteringHandler->filterWhereClause(
                     $this->rootAlias,
                     $relationsAndFieldName,
                     $filterParameter,
                     $strategy,
                     $value
                 );
+
+                if(\array_key_exists($parameter, $this->constants) && empty($this->constants[$parameter]) === false){
+                    $whereClause = "( " . $whereClause;
+                    $whereClause .= " AND " . $this->constants[$parameter];
+                    $whereClause .= " )";
+                }
+
+                $filterWhereClauses[] = $whereClause;
 
                 if ($filteringHandler instanceof WithRelationInterface) {
                     $relationJoins = $filteringHandler->relationJoin(

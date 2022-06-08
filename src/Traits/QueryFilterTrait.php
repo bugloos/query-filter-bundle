@@ -87,6 +87,30 @@ trait QueryFilterTrait
         return $this;
     }
 
+    public function constants(array $constants): self
+    {
+        if (empty($constants)) {
+            return $this;
+        }
+
+        foreach ($constants as $parameter => $condition) {
+            $this->addConstant($parameter, $condition);
+        }
+
+        return $this;
+    }
+
+    public function addConstant(string $parameter, string $condition): self
+    {
+        if (empty($parameter) || empty($condition)) {
+            return $this;
+        }
+
+        $this->constants[$parameter] = $condition;
+
+        return $this;
+    }
+
     public function cacheTime(int $cacheTime): self
     {
         $this->cacheTime = $cacheTime;
