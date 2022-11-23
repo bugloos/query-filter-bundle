@@ -8,6 +8,7 @@ use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\ClassMetadata;
+use Doctrine\ORM\Mapping\Driver\AttributeReader;
 use Bugloos\QueryFilterBundle\Enum\ColumnType;
 use Bugloos\QueryFilterBundle\TypeHandler\Contract\FilterValueInterface;
 use Bugloos\QueryFilterBundle\TypeHandler\Factory\TypeFactory;
@@ -106,6 +107,17 @@ abstract class AbstractFilterHandler
         $annotationReader = new AnnotationReader();
         $propertyAnnotation = $annotationReader->getPropertyAnnotation($property, ORM\Column::class);
 
-        return $propertyAnnotation->type;
+        if ($propertyAnnotation !== null) {
+            return $propertyAnnotation->type;
+        }
+
+        $attributeReader = new AttributeReader();
+        $propertyAttribute = $attributeReader->getPropertyAnnotation($property, ORM\Column::class);
+
+        if ($propertyAttribute->type === null && $propertyAttribute->length !== null) {
+            return ColumnType::STRING;
+        }
+
+        return $propertyAttribute->type;
     }
 }
