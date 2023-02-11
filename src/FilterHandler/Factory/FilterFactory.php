@@ -8,6 +8,7 @@ use Bugloos\QueryFilterBundle\FilterHandler\Contract\AbstractFilterHandler;
 use Bugloos\QueryFilterBundle\FilterHandler\NoRelationHandler;
 use Bugloos\QueryFilterBundle\FilterHandler\OneLevelRelationHandler;
 use Bugloos\QueryFilterBundle\FilterHandler\TwoLevelRelationHandler;
+use Bugloos\QueryFilterBundle\FilterHandler\ThreeLevelRelationHandler;
 use Doctrine\ORM\EntityManagerInterface;
 
 /**
@@ -16,8 +17,12 @@ use Doctrine\ORM\EntityManagerInterface;
 class FilterFactory
 {
     private const NO_RELATION = 1;
+
     private const ONE_LEVEL_RELATION = 2;
+
     private const TWO_LEVEL_RELATION = 3;
+
+    private const THREE_LEVEL_RELATION = 4;
 
     protected EntityManagerInterface $entityManager;
 
@@ -43,9 +48,12 @@ class FilterFactory
             case self::TWO_LEVEL_RELATION:
                 return new TwoLevelRelationHandler($this->entityManager);
 
+            case self::THREE_LEVEL_RELATION:
+                return new ThreeLevelRelationHandler($this->entityManager);
+
             default:
                 throw new \RuntimeException(
-                    'This Bundle just support maximum two-level deep relation'
+                    'This Bundle just support maximum three-level deep relation'
                 );
         }
     }

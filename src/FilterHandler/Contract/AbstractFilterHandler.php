@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Bugloos\QueryFilterBundle\FilterHandler\Contract;
 
+use Doctrine\Common\Annotations\Annotation\Attributes;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping as ORM;

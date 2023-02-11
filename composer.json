@@ -18,7 +18,8 @@
         "symfony/http-kernel": "^4.4 | ^5.4 | ^6.0",
         "psr/cache": "^1.0 | ^2.0 | ^3.0",
         "symfony/orm-pack": "^2.2",
-        "symfony/framework-bundle": "^4.4 | ^5.4 | ^6.0"
+        "symfony/framework-bundle": "^4.4 | ^5.4 | ^6.0",
+        "doctrine/annotations": "^2.0"
     },
     "require-dev": {
         "ext-json": "*",
