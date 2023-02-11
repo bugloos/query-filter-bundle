@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace Bugloos\QueryFilterBundle\FilterHandler\Contract;
 
-use Doctrine\Common\Annotations\Annotation\Attributes;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\ClassMetadata;
-use Doctrine\ORM\Mapping\Driver\AttributeReader;
 use Bugloos\QueryFilterBundle\Enum\ColumnType;
 use Bugloos\QueryFilterBundle\TypeHandler\Contract\FilterValueInterface;
 use Bugloos\QueryFilterBundle\TypeHandler\Factory\TypeFactory;
+use Koriym\Attributes\AttributeReader;
 use ReflectionClass;
 use ReflectionException;
 
