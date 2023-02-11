@@ -49,13 +49,11 @@ class FilterFactory
                 return new TwoLevelRelationHandler($this->entityManager);
 
             case self::THREE_LEVEL_RELATION:
-                $handler = new ThreeLevelRelationHandler($this->entityManager);
-                break;
-
+                return new ThreeLevelRelationHandler($this->entityManager);
 
             default:
                 throw new \RuntimeException(
-                    'This Bundle just support maximum two-level deep relation'
+                    'This Bundle just support maximum three-level deep relation'
                 );
         }
     }
