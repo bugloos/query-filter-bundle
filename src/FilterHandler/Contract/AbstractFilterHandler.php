@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping\ClassMetadata;
 use Bugloos\QueryFilterBundle\Enum\ColumnType;
 use Bugloos\QueryFilterBundle\TypeHandler\Contract\FilterValueInterface;
 use Bugloos\QueryFilterBundle\TypeHandler\Factory\TypeFactory;
-use Koriym\Attributes\AttributeReader;
+use Doctrine\ORM\Mapping\Driver\AttributeReader;
 use ReflectionClass;
 use ReflectionException;
 
@@ -112,7 +112,7 @@ abstract class AbstractFilterHandler
         }
 
         $attributeReader = new AttributeReader();
-        $propertyAttribute = $attributeReader->getPropertyAnnotation($property, ORM\Column::class);
+        $propertyAttribute = $attributeReader->getPropertyAttribute($property, ORM\Column::class);
 
         if ($propertyAttribute->type === null && $propertyAttribute->length !== null) {
             return ColumnType::STRING;
