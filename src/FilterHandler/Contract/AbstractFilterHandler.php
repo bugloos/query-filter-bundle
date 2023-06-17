@@ -112,7 +112,7 @@ abstract class AbstractFilterHandler
         }
 
         $attributeReader = new AttributeReader();
-        $propertyAttribute = $attributeReader->getPropertyAnnotation($property, ORM\Column::class);
+        $propertyAttribute = $attributeReader->getPropertyAttribute($property, ORM\Column::class);
 
         if ($propertyAttribute->type === null && $propertyAttribute->length !== null) {
             return ColumnType::STRING;
