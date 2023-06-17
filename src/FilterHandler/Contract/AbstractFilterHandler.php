@@ -4,16 +4,14 @@ declare(strict_types=1);
 
 namespace Bugloos\QueryFilterBundle\FilterHandler\Contract;
 
+use Bugloos\QueryFilterBundle\Enum\ColumnType;
+use Bugloos\QueryFilterBundle\Service\AttributeReader;
+use Bugloos\QueryFilterBundle\TypeHandler\Contract\FilterValueInterface;
+use Bugloos\QueryFilterBundle\TypeHandler\Factory\TypeFactory;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\ClassMetadata;
-use Bugloos\QueryFilterBundle\Enum\ColumnType;
-use Bugloos\QueryFilterBundle\TypeHandler\Contract\FilterValueInterface;
-use Bugloos\QueryFilterBundle\TypeHandler\Factory\TypeFactory;
-use Doctrine\ORM\Mapping\Driver\AttributeReader;
-use ReflectionClass;
-use ReflectionException;
 
 /**
  * @author Milad Ghofrani <milad.ghofrani@gmail.com>
@@ -89,7 +87,8 @@ abstract class AbstractFilterHandler
 
     protected function createParameterName($alias, $column): string
     {
-        $random = mt_rand(1111,9999);
+        $random = mt_rand(1111, 9999);
+
         return sprintf('%s_%s_%s', $alias, $column, $random);
     }
 
@@ -97,24 +96,24 @@ abstract class AbstractFilterHandler
      * @param mixed $field
      * @param mixed $rootClass
      *
-     * @throws ReflectionException
+     * @throws \ReflectionException
      */
-    protected function getFieldTypeFromAnnotation($field, $rootClass)
+    protected function getFieldTypeFromAnnotation(mixed $field, mixed $rootClass)
     {
-        $rootEntityRef = new ReflectionClass($rootClass->getName());
+        $rootEntityRef = new \ReflectionClass($rootClass->getName());
         $property = $rootEntityRef->getProperty($field);
 
         $annotationReader = new AnnotationReader();
         $propertyAnnotation = $annotationReader->getPropertyAnnotation($property, ORM\Column::class);
 
-        if ($propertyAnnotation !== null) {
+        if (null !== $propertyAnnotation) {
             return $propertyAnnotation->type;
         }
 
         $attributeReader = new AttributeReader();
-        $propertyAttribute = $attributeReader->getPropertyAttribute($property, ORM\Column::class);
+        $propertyAttribute = $attributeReader->getPropertyAnnotation($property, ORM\Column::class);
 
-        if ($propertyAttribute->type === null && $propertyAttribute->length !== null) {
+        if (null === $propertyAttribute->type && null !== $propertyAttribute->length) {
             return ColumnType::STRING;
         }
 
