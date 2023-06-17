@@ -50,13 +50,22 @@ class FilterFactoryTest extends TestCase
         self::assertInstanceOf(ThreeLevelRelationHandler::class, $relationHandler);
     }
 
-    public function test_filter_handler_with_an_exception_when_need_relation_more_than_three_level(): void
+    public function test_filter_handler_with_four_level_relation(): void
+    {
+        $filterFactory = $this->makeFilterFactory();
+
+        $relationHandler = $filterFactory->createFilterHandler(['bookUsers', 'user', 'country', 'name', 'fake']);
+
+        self::assertInstanceOf(ThreeLevelRelationHandler::class, $relationHandler);
+    }
+
+    public function test_filter_handler_with_an_exception_when_need_relation_more_than_four_level(): void
     {
         $filterFactory = $this->makeFilterFactory();
 
         $this->expectException(\RuntimeException::class);
 
-        $filterFactory->createFilterHandler(['bookUsers', 'user', 'country', 'name', 'fake']);
+        $filterFactory->createFilterHandler(['bookUsers', 'user', 'country', 'name', 'fake', 'fake']);
     }
 
     private function makeFilterFactory(): FilterFactory
