@@ -3,6 +3,7 @@
 namespace Bugloos\QueryFilterBundle\Tests\Unit\FilterHandler\Factory;
 
 use Bugloos\QueryFilterBundle\FilterHandler\Factory\FilterFactory;
+use Bugloos\QueryFilterBundle\FilterHandler\FourLevelRelationHandler;
 use Bugloos\QueryFilterBundle\FilterHandler\NoRelationHandler;
 use Bugloos\QueryFilterBundle\FilterHandler\OneLevelRelationHandler;
 use Bugloos\QueryFilterBundle\FilterHandler\TwoLevelRelationHandler;
@@ -56,7 +57,7 @@ class FilterFactoryTest extends TestCase
 
         $relationHandler = $filterFactory->createFilterHandler(['bookUsers', 'user', 'country', 'name', 'fake']);
 
-        self::assertInstanceOf(ThreeLevelRelationHandler::class, $relationHandler);
+        self::assertInstanceOf(FourLevelRelationHandler::class, $relationHandler);
     }
 
     public function test_filter_handler_with_an_exception_when_need_relation_more_than_four_level(): void
